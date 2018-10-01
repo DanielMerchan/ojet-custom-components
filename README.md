@@ -22,12 +22,12 @@ Demo Card is the Oracle JET Cookbook Composite Component demonstration: (https:/
 /js/jet-composites/demo-card
 ```
 ### Files
-```loaded.js```  -> Registers the Composite Component.
-```component.json``` -> Definition of the *demo-card* (metadata, version compatibility, properties, methods, events...)
-```demo-card-view.html``` -> HTML View
-```demo-card-viewModel.js``` -> View Model
-```demo-card-styles.css``` -> CSS Styles
-```/resources/nls/demo-card-strings.js``` -> Resource Bundle Multilanguage
+- ```loaded.js```  -> Registers the Composite Component.
+- ```component.json``` -> Definition of the *demo-card* (metadata, version compatibility, properties, methods, events...)
+- ```demo-card-view.html``` -> HTML View
+- ```demo-card-viewModel.js``` -> View Model
+- ```demo-card-styles.css``` -> CSS Styles
+- ```/resources/nls/demo-card-strings.js``` -> Resource Bundle Multilanguage
 
 ### Usage
 Include the JET Composite as part of you View Model JavaScript file
