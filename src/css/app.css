@@ -1,0 +1,10 @@
+/*
+    Document   : override
+    Created on : <date>
+    Author     : <author>
+    Description:
+        This is where any of your application specific styles should be included
+*/
+#composite-container demo-card .demo-card-front-side {
+    background-image: url('images/composites/card-background_1.png');
+}
