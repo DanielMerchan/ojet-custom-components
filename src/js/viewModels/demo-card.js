@@ -6,7 +6,7 @@
 /*
  * Your dashboard ViewModel code goes here
  */
-define(['ojs/ojcore', 'knockout', 'jquery', 'jet-composites/demo-card/loader'],
+define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojnavigationlist', 'jet-composites/demo-card/loader'],
         function(oj, ko, $) {
 
             function DemoCardViewModel() {
@@ -14,7 +14,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'jet-composites/demo-card/loader'],
                 // Below are a set of the ViewModel methods invoked by the oj-module component.
                 // Please reference the oj-module jsDoc for additional information.
 
-                self.employees = [
+                self.employees = ko.observableArray([
                     {
                         name: 'Deb Raphaely',
                         avatar: 'images/fakepeople/100.png',
@@ -36,7 +36,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'jet-composites/demo-card/loader'],
                         work: 6501232784,
                         email: 'daniel.merchan@oracle.com'
                     }
-                ];
+                ]);
 
                 /**
                  * Optional ViewModel method invoked after the View is inserted into the
