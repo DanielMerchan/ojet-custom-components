@@ -32,7 +32,7 @@ Demo Card is the Oracle JET Cookbook Composite Component demonstration: (https:/
 ### Usage
 Include the JET Composite as part of you View Model JavaScript file
 ```js
-define(['ojs/ojcore', 'knockout', 'jquery', 'jet-composites/demo-card/loader'],
+define(['ojs/ojcore', 'knockout', 'jquery', 'demo-card/loader'],
 ```
 ```html
 <oj-bind-for-each data="[[employees]]" as="employee">
