@@ -6,7 +6,7 @@
 /*
  * Your dashboard ViewModel code goes here
  */
-define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojnavigationlist', 'jet-composites/demo-card/loader'],
+define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojnavigationlist', 'demo-card/loader'],
         function(oj, ko, $) {
 
             function DemoCardViewModel() {

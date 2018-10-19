@@ -3,8 +3,8 @@
   "use": "local",
 
   "cdns": {
-    "jet": "https://static.oracle.com/cdn/jet/v5.1.0/default/js",
-    "3rdparty": "https://static.oracle.com/cdn/jet/v5.1.0/3rdparty"
+    "jet": "https://static.oracle.com/cdn/jet/v6.0.0/default/js",
+    "3rdparty": "https://static.oracle.com/cdn/jet/v6.0.0/3rdparty"
   },
 
   "libs": {
@@ -99,6 +99,23 @@
       }
     },
 
+    "persist": {
+      "cdn": "3rdparty",
+      "cwd": "node_modules/@oracle/oraclejet/dist/js/libs/persist",
+      "debug": {
+        "cwd": "debug",
+        "src": ["**"],
+        "path": "libs/persist/debug",
+        "cdnPath": "persist/debug"
+      },
+      "release": {
+        "cwd": "min",
+        "src": ["**"],
+        "path": "libs/persist/min",
+        "cdnPath": "persist/min"
+      }
+    },
+
     "ojs": {
       "cdn": "jet",
       "cwd": "node_modules/@oracle/oraclejet/dist/js/libs/oj",
@@ -176,6 +193,21 @@
       }
     },
 
+    "touchr": {
+      "cdn": "3rdparty",
+      "cwd": "node_modules/touchr/js",
+      "debug": {
+        "src":  "touchr.js",
+        "path": "libs/touchr/touchr.js",
+        "cdnPath": "touchr/touchr"
+      },
+      "release": {
+        "src": "touchr.js",
+        "path": "libs/touchr/touchr.js",
+        "cdnPath": "touchr/touchr"
+      }
+    },
+
     "customElements": {
       "cdn": "3rdparty",
       "cwd": "node_modules/@webcomponents/custom-elements",
@@ -197,12 +229,12 @@
       "debug": {
         "src":  ["css.js", "css-builder.js", "normalize.js"],
         "path": "libs/require-css/css.js",
-        "cdnPath": "css"
+        "cdnPath": "require-css/css"
       },
       "release": {
         "src": ["css.min.js", "css-builder.js", "normalize.js"],
         "path": "libs/require-css/css.min.js",
-        "cdnPath": "css.min"
+        "cdnPath": "require-css/css.min"
       }
     }
   }
