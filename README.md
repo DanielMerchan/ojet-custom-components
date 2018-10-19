@@ -3,8 +3,8 @@
 
 **JETCustomComponents** is an *Oracle JET Application* for developing and testing *Oracle JET Composite Components* that can be re-used.
 
-Oracle JET 5.2.0, Working with JET Composite Components
-https://docs.oracle.com/en/middleware/jet/5.2/develop/working-oracle-jet-composite-components.html
+Oracle JET 6.0.0, Working with JET Composite Components
+https://docs.oracle.com/en/middleware/jet/6/develop/working-oracle-jet-web-components.html
 
 # Install a JET Composite Component
 - Copy the ```/jet-composite/[my-component]``` to your JavaScript Application ```/js``` location
