@@ -1,10 +1,10 @@
 {
-  "name": "JETCustomComponents",
+  "name": "ojet-custom-components",
   "version": "1.0.0",
   "description": "An Oracle JavaScript Extension Toolkit(JET) web app",
   "dependencies": {
-    "@oracle/oraclejet": "^6.0.1",
-    "@oracle/oraclejet-tooling": "^6.0.2"
+    "@oracle/oraclejet": "^7.1.0",
+    "@oracle/oraclejet-tooling": "^7.1.1"
   },
   "devDependencies": {
     "@oracle/grunt-oraclejet": "~5.1.0",
