@@ -1,0 +1,82 @@
+/* This is to prevent the flash of unstyled content before the composite properties have been setup. */
+ojc-card:not(.oj-complete) {
+    visibility: hidden;
+}
+
+ojc-card {
+    display: block;
+    width: 200px;
+    height: 200px;
+    perspective: 800px;
+    margin: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+ojc-card h2,
+ojc-card h5,
+ojc-card .ojc-card-text,
+ojc-card .ojc-card-avatar {
+    color: #fff;
+    padding: 0;
+}
+
+/* To ensure your classes are scoped correctly, we recommend scoping classes and prefixing class names with the composite name. */
+ojc-card .ojc-card-front-side,
+ojc-card .ojc-card-back-side {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    border-radius: 5px;
+    background-color: rgb(38, 125, 179);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    box-sizing: border-box;
+}
+
+ojc-card .ojc-card-front-side {
+    /* Specify a background-image url to provide an image for the front of the card. */
+    text-align: center;
+    padding-top: 30px;
+}
+
+ojc-card .ojc-card-back-side {
+    padding-left: 15px;
+    padding-right: 15px;
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    z-index: -1;
+}
+
+ojc-card .ojc-card-inner-back-side {
+    /* IE11 workaround to show back side */
+    -ms-transform: rotateY(180deg);
+}
+
+ojc-card .ojc-card-flip-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, .25);
+    border-radius: 5px;
+}
+
+ojc-card .ojc-card-flip-container.ojc-card-flipped {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+ojc-card .ojc-card-flip-container.ojc-card-flipped .ojc-card-back-side {
+    /* IE11 workaround to show back side */
+    -ms-transform: rotateY(360deg);
+    z-index: 0;
+}
+
+ojc-card .ojc-card-avatar {
+    margin: auto;
+}

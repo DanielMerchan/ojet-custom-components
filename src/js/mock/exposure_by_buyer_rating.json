@@ -1,0 +1,66 @@
+{
+    "exposure_by_buyer_rating": {
+        "group_list": [
+            "0-10",
+            "11-20"
+        ],
+        "exposure": {
+            "sales_case": {
+                "credit_limit_indications": [
+                    {
+                        "buyer_rating_band": "0-10",
+                        "exposure_percentage": 20
+                    },
+                    {
+                        "buyer_rating_band": "11-20",
+                        "exposure_percentage": 30
+                    }
+                ],
+                "hold_cover": [
+                    {
+                        "buyer_rating_band": "0-10",
+                        "exposure_percentage": 40
+                    },
+                    {
+                        "buyer_rating_band": "11-20",
+                        "exposure_percentage": 10
+                    }
+                ],
+                "non_submitted": [
+                    {
+                        "buyer_rating_band": "0-10",
+                        "exposure_percentage": 30
+                    },
+                    {
+                        "buyer_rating_band": "11-20",
+                        "exposure_percentage": 5
+                    }
+                ]
+            },
+            "atradius": {
+                "credit_limit_decisions": [
+                    {
+                        "buyer_rating_band": "0-10",
+                        "exposure_percentage": 45
+                    },
+                    {
+                        "buyer_rating_band": "11-20",
+                        "exposure_percentage": 90
+                    }
+                ]
+            },
+            "industry": {
+                "credit_limit_decisions": [
+                    {
+                        "buyer_rating_band": "0-10",
+                        "exposure_percentage": 24
+                    },
+                    {
+                        "buyer_rating_band": "11-20",
+                        "exposure_percentage": 38
+                    }
+                ]
+            }
+        }
+    }
+}

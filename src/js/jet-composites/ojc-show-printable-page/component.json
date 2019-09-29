@@ -1,0 +1,39 @@
+{
+  "name": "ojc-show-printable-page",
+  "version": "1.0.0",
+  "jetVersion": ">=7.2.0 <8.0.0",
+  "displayName": "Show or Print Printable Page.",
+  "description": "It displays the Printable Page based on the DIV identifier sent.",
+  "properties": {
+    "printElement": {
+      "displayName": "Exported Component",
+      "description": "The component id of the DOM Element parent for printing. If not given the entire document will be used",
+      "required": false,
+      "type": "string",
+      "propertyGroup": "common"
+    },
+    "forcePrint": {
+      "displayName": "Print",
+      "description": "If true, triggers the print automatically. By default is false",
+      "required": false,
+      "type": "boolean",
+      "propertyGroup": "common"
+    }
+  },
+  "methods": {
+    "print": {
+      "description": "Programmatically invoke the print, can be used instead of pressing the button.",
+      "internalName": "invokePrint",
+      "return": "void"
+    }
+  },
+  "events": {},
+  "slots": {
+    "startIcon": {
+      "description": "Slot for optional start icon on the export button (if displayed)"
+    },
+    "endIcon": {
+      "description": "Slot for optional end icon on the export button (if displayed)"
+    }
+  }
+}

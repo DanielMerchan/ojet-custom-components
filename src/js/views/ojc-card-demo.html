@@ -1,0 +1,22 @@
+<!--
+ Copyright (c) 2014, 2019, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<div class="oj-hybrid-padding">
+    <h1>OJC - Demo Card Example</h1>
+    <div id="sampleDemo" class="demo-padding demo-container">
+        <div id="componentDemoContent" style="width: 1px; min-width: 100%;">
+
+            <div id="composite-container" class="oj-flex oj-sm-flex-items-initial">
+                <oj-bind-for-each data="[[employees]]" as="employee">
+                    <template>
+                        <ojc-card class="oj-flex-item" name="[[employee.data.name]]" avatar="[[employee.data.avatar]]"
+                            work-title="[[employee.data.title]]" work-number="[[employee.data.work]]"
+                            email="[[employee.data.email]]">
+                        </ojc-card>
+                    </template>
+                </oj-bind-for-each>
+            </div>
+        </div>
+    </div>
+</div>

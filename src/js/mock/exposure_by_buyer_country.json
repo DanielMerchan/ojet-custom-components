@@ -1,0 +1,92 @@
+{
+    "exposure_information": {
+        "total_buyers": 200,
+        "exposure_by_buyer_country": [
+            {
+                "country": {
+                    "main_name": "Afganistan",
+                    "local_name": "XXX",
+                    "two_characte_iso_country_code": "AF"
+                },
+                "average_buyer_rating": 60,
+                "exposure": 200000,
+                "currency": "EUR",
+                "portfolio": 3.45,
+                "number_of_buyers": 20
+            },
+            {
+                "country": {
+                    "main_name": "Netherlands",
+                    "local_name": "XXX",
+                    "two_characte_iso_country_code": "NL"
+                },
+                "average_buyer_rating": 20,
+                "exposure": 800000,
+                "currency": "EUR",
+                "portfolio": 13.45,
+                "number_of_buyers": 10
+            },
+            {
+                "country": {
+                    "main_name": "Spain",
+                    "local_name": "XXX",
+                    "two_characte_iso_country_code": "ES"
+                },
+                "average_buyer_rating": 40,
+                "exposure": 400000,
+                "currency": "EUR",
+                "portfolio": 21.45,
+                "number_of_buyers": 30
+            },
+            {
+                "country": {
+                    "main_name": "Brazil",
+                    "local_name": "XXX",
+                    "two_characte_iso_country_code": "BR"
+                },
+                "average_buyer_rating": 10,
+                "exposure": 100000,
+                "currency": "EUR",
+                "portfolio": 1.45,
+                "number_of_buyers": 37
+            },
+            {
+                "country": {
+                    "main_name": "United States",
+                    "local_name": "XXX",
+                    "two_characte_iso_country_code": "US"
+                },
+                "average_buyer_rating": 90,
+                "exposure": 1500000,
+                "currency": "EUR",
+                "portfolio": 33.45,
+                "number_of_buyers": 45
+
+            },
+            {
+                "country": {
+                    "main_name": "South Africa",
+                    "local_name": "XXX",
+                    "two_characte_iso_country_code": "ZA"
+                },
+                "average_buyer_rating": 55,
+                "exposure": 450000,
+                "currency": "EUR",
+                "portfolio": 18,
+                "number_of_buyers": 78
+            },
+            {
+                "country": {
+                    "main_name": "Russian Federation",
+                    "local_name": "XXX",
+                    "two_characte_iso_country_code": "RU"
+                },
+                "average_buyer_rating": 20,
+                "exposure": 800000,
+                "currency": "EUR",
+                "portfolio": 13.45,
+                "number_of_buyers": 12
+            }
+        ]
+    }
+}

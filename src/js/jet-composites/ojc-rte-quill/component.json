@@ -1,0 +1,229 @@
+{
+  "name": "ojc-rte-quill",
+  "version": "1.0.0",
+  "jetVersion": "^7.2.0",
+  "displayName": "Quill JS - Rich Text Editor",
+  "description": "Oracle JET Custom Web Component implementing a Rich Text Editor based on QuillJS ",
+  "properties": {
+    "bounds": {
+      "description": "DOM Element or a CSS selector for a DOM Element, within which the editor’s ui elements (i.e. tooltips, etc.) should be confined. Currently, it only considers left and right boundaries.",
+      "type": "element",
+      "required": false
+    },
+    "debug": {
+      "description": "Shortcut for debug. Note debug is a static method and will affect other instances of Quill editors on the page. Only warning and error messages are enabled by default.",
+      "type": "string",
+      "value": "warn",
+      "enumValues": ["error", "warn", "info", "log", "disabled"],
+      "required": false,
+      "writeback": true
+    },
+    "formats": {
+      "description": "Whitelist of formats to allow in the editor",
+      "type": "array",
+      "required": false,
+      "value": ["background", "bold", "color", "font", "code", "italic", "link", "size", "strike", "script", "underline", "blockquote", "header", "indent", "list", "align", "direction", "code-block", "image", "video"]
+    },
+    "modules": {
+      "description": "Modules allow Quill’s behavior and functionality to be customized. Several officially supported modules are available to pick and choose from, some with additional configuration options and APIs. Refer to their respective documentation pages for more details.",
+      "type": "object",
+      "required": false,
+      "properties": {
+        "syntax": {
+          "description": "Enable highlight syntax for code-block",
+          "type": "boolean",
+          "value": false,
+          "required": false
+        },
+        "history": {
+          "description": "The History module is responsible for handling undo and redo for Quill",
+          "type": "object",
+          "value": {
+            "delay": 1000,
+            "maxStack": 100,
+            "userOnly": false
+          },
+          "required": false,
+          "properties": {
+            "delay": {
+              "description": "Changes occuring within the delay number of milliseconds is merged into a single change.",
+              "type": "number"
+            },
+            "maxStack": {
+              "description": "Maximum size of the history’s undo/redo stack. Merged changes with the delay option counts as a singular change.",
+              "type": "number"
+            },
+            "userOnly": {
+              "description": "By default all changes, whether originating from user input or programmatically through the API, are treated the same and change be undone or redone by the history module. If userOnly is set to true, only user changes will be undone or redone.",
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "toolbarOptions": {
+      "description": "Toolbar controls can either be specified by a simple array of format names or a custom HTML container.",
+      "type": "array",
+      "required": false,
+      "value": ["font","size","bold","underline","italic","strikethrough","color","background","sub-script","super-script","header","blockquoute","code-block","indent","list","align","direction","formula","video","image","link","clean"]
+    },
+    "placeholder": {
+      "description": "Placeholder text to show when editor is empty.",
+      "type": "string",
+      "required": false
+    },
+    "readOnly": {
+      "description": "Whether to instantiate the editor to read-only mode.",
+      "type": "boolean",
+      "value": false,
+      "writeback": true
+    },
+    "scrollingContainer": {
+      "description": "DOM Element or a CSS selector for a DOM Element, specifying which container has the scrollbars (i.e. overflow-y: auto), if is has been changed from the default ql-editor with custom CSS. Necessary to fix scroll jumping bugs when Quill is set to auto grow its height, and another ancestor container is responsible from the scrolling.",
+      "type": "string",
+      "required": false
+    },
+    "theme": {
+      "description": "Name of theme to use. The builtin options are “bubble” or “snow”. An invalid or falsy value will load a default minimal theme. Note the theme’s specific stylesheet still needs to be included manually. See Themes for more information.",
+      "type": "string",
+      "required": false,
+      "enumValues": ["bubble","snow", "base"],
+      "value": "snow"
+    }
+  },
+  "methods": {
+    "deleteText": {
+      "description": "Programmatically invoke the export, can be used instead of pressing the button. Returns false if export is currently disabled because the component is invalid in some way",
+      "internalName": "_quillDeleteText",
+      "params": [
+        {
+          "name": "index",
+          "description": "Starting index for deleting text",
+          "type": "number"
+        },
+        {
+          "name": "length",
+          "description": "Indicates how many characters must be removed",
+          "type": "number"
+        },
+        {
+          "name": "source",
+          "description": "Triggered by 'api' or 'user'. Default 'api'",
+          "type": "?string"
+        }
+      ]
+    },
+    "getContents": {
+      "description": "Retrieves contents of the editor, with formatting data, represented by a Delta object.",
+      "internalName": "_quillGetContents",
+      "params": [
+        {
+          "name": "index",
+          "description": "Starting index for getting the content",
+          "type": "number"
+        },
+        {
+          "name": "length",
+          "description": "Indicates how many characters must be retrieved",
+          "type": "number"
+        }
+      ]
+    },
+    "getLength": {
+      "description": "Retrieves the length of the editor contents. Note even when Quill is empty, there is still a blank line represented by ‘\n’, so getLength will return 1.",
+      "internalName": "_quillGetLength"
+    },
+    "getText": {
+      "description": "Retrieves the string contents of the editor. Non-string content are omitted, so the returned string’s length may be shorter than the editor’s as returned by getLength. Note even when Quill is empty, there is still a blank line in the editor, so in these cases getText will return ‘\n’. The length parameter defaults to the length of the remaining document.",
+      "internalName": "_quillGetText",
+      "params": [
+        {
+          "name": "index",
+          "description": "Starting index for getting the string content",
+          "type": "number"
+        },
+        {
+          "name": "length",
+          "description": "Indicates how many characters must be retrieved",
+          "type": "number"
+        }
+      ]
+    }
+  },
+  "events": {
+    "ojcTextChange": {
+      "description": "Emitted when the contents of Quill have changed. Details of the change, representation of the editor contents before the change, along with the source of the change are provided",
+      "bubbles": true,
+      "cancelable": false,
+      "detail": {
+        "delta": {
+          "description": "Current Text status of the Rich Text Editor",
+          "type": "Delta"
+        },
+        "oldDelta": {
+          "description": "Old Text status of the Rich Text Editor",
+          "type": "Delta"
+        },
+        "source": {
+          "description": "Origin of the Event (API or User interaction)",
+          "type": "string"
+        }
+      }
+    },
+    "ojcSelectionChange": {
+      "description": "Emitted when a user or API causes the selection to change, with a range representing the selection boundaries. A null range indicates selection loss (usually caused by loss of focus from the editor). You can also use this event as a focus change event by just checking if the emitted range is null or not.",
+      "bubbles": true,
+      "cancelable": false,
+      "detail": {
+        "range": {
+          "description": "Current Range selected in the text. It can be used in combination with getText get the selected text in the editor",
+          "type": "object",
+          "properties": {
+            "index": {
+              "description": "Index position were the selection started",
+              "type": "number"
+            },
+            "length": {
+              "description": "How many characters have been selected",
+              "type": "number"
+            }
+          }
+        },
+        "oldRange": {
+          "description": "Old Range selected in the text. It can be used in combination with getText get the selected text in the editor",
+          "type": "object",
+          "properties": {
+            "index": {
+              "description": "Index position were the selection started",
+              "type": "number"
+            },
+            "length": {
+              "description": "How many characters have been selected",
+              "type": "number"
+            }
+          }
+        },
+        "source": {
+          "description": "Origin of the Event (API or User interaction)",
+          "type": "string"
+        }
+      }
+    },
+    "ojcEditorChange": {
+      "description": "Emitted when either text-change or selection-change would be emitted, even when the source is \"silent\". The first parameter is the event name, either text-change or selection-change, followed by the arguments normally passed to those respective handlers.",
+      "bubbles": true,
+      "cancelable": false,
+      "detail": {
+        "eventName": {
+          "description": "Name of the event dispatch by the Rich Text Editor",
+          "type": "string"
+        },
+        "args": {
+          "description": "Arguments linked to the event dispatched",
+          "type": "array"
+        }
+      }
+    }
+  },
+  "slots": {}
+}

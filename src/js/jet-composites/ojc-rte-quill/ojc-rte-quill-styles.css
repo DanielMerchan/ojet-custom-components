@@ -1,0 +1,8 @@
+ojc-rte-quill:not(.oj-complete){
+  visibility: hidden;
+}
+
+ojc-rte-quill{
+	min-height: 50px;
+	width: 50px;
+}

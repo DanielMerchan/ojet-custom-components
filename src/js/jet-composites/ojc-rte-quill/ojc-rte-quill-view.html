@@ -1,0 +1,56 @@
+<!--
+  Copyright (c) 2015, 2019, Oracle and/or its affiliates.
+  The Universal Permissive License (UPL), Version 1.0
+-->
+<div :id="[[componentContainerId]]">
+  <div :id="[[toolbarContainerId]]">
+    <span class="ql-formats" :style.display="[[fontBlockFormatDisplay]]">
+      <select class="ql-font" :style.display="[[fontFormatDisplay]]"></select>
+      <select class="ql-size" :style.display="[[fontSizeFormatDisplay]]"></select>
+    </span>
+    <span class="ql-formats" :style.display="[[fontStyleBlockFormatDisplay]]">
+      <button class="ql-bold" :style.display="[[fontStyleBoldFormatDisplay]]"></button>
+      <button class="ql-italic" :style.display="[[fontStyleItalicFormatDisplay]]"></button>
+      <button class="ql-underline" :style.display="[[fontStyleUnderlineFormatDisplay]]"></button>
+      <button class="ql-strike" :style.display="[[fontStyleStrikeFormatDisplay]]"></button>
+    </span>
+    <span class="ql-formats" :style.display="[[fontColorBlockFormatDisplay]]">
+      <select class="ql-color" :style.display="[[fontColorFormatDisplay]]"></select>
+      <select class="ql-background" :style.display="[[fontColorBackgroundFormatDisplay]]"></select>
+    </span>
+    <span class="ql-formats" :style.display="[[scriptBlockFormatDisplay]]">
+      <button class="ql-script" value="sub" :style.display="[[scriptSubFormatDisplay]]"></button>
+      <button class="ql-script" value="super" :style.display="[[scriptSuperFormatDisplay]]"></button>
+    </span>
+    <span class="ql-formats" :style.display="[[headerBlockFormatDisplay]]">
+      <button class="ql-header" value="1" :style.display="[[headerFormatDisplay]]"></button>
+      <button class="ql-header" value="2" :style.display="[[headerFormatDisplay]]"></button>
+    </span>
+    <span class="ql-formats" :style.display="[[blockFormatDisplay]]">
+      <button class="ql-blockquote" :style.display="[[blockBlockquouteDisplay]]"></button>
+      <button class="ql-code-block" :style.display="[[blockCodeblockDisplay]]"></button>
+    </span>
+    <span class="ql-formats" :style.display="[[indentListBlockFormatDisplay]]">
+      <button class="ql-list" value="ordered" :style.display="[[listFormatDisplay]]"></button>
+      <button class="ql-list" value="bullet" :style.display="[[listFormatDisplay]]"></button>
+      <button class="ql-indent" value="-1" :style.display="[[indentFormatDisplay]]"></button>
+      <button class="ql-indent" value="+1" :style.display="[[indentFormatDisplay]]"></button>
+    </span>
+    <span class="ql-formats" :style.display="[[alignDirectionBlockFormatDisplay]]">
+      <button class="ql-direction" value="rtl" :style.display="[[directionFormatDisplay]]"></button>
+      <select class="ql-align" :style.display="[[alignFormatDisplay]]"></select>
+    </span>
+    <span class="ql-formats" :style.display="[[addBlockFormatDisplay]]">
+      <button class="ql-link" :style.display="[[addLinkFormatDisplay]]"></button>
+      <button class="ql-image" :style.display="[[addImageFormatDisplay]]"></button>
+      <button class="ql-video" :style.display="[[addVideoFormatDisplay]]"></button>
+      <button class="ql-formula" :style.display="[[addFormulaFormatDisplay]]"></button>
+    </span>
+    <span class="ql-formats" :style.display="[[cleanBlockFormatDisplay]]">
+      <button class="ql-clean" :style.display="[[cleanFormatDisplay]]"></button>
+    </span>
+  </div>
+  <div :id=[[editorContainerId]]></div>
+  <oj-messages :id="[[messagesSubId]]" messages="[[messageQueue]]" display="general">
+  </oj-messages>
+</div>

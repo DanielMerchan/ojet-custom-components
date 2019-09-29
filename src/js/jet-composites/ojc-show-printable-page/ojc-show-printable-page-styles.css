@@ -1,0 +1,3 @@
+ojc-show-printable-page:not(.oj-complete){
+  visibility: hidden;
+}
