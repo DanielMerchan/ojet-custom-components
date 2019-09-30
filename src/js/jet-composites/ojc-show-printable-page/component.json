@@ -1,6 +1,6 @@
 {
   "name": "ojc-show-printable-page",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "jetVersion": ">=7.2.0 <8.0.0",
   "displayName": "Show or Print Printable Page.",
   "description": "It displays the Printable Page based on the DIV identifier sent.",
