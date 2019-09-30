@@ -11,7 +11,6 @@ define(
 
     /**
      * @name RichTextEditorQuillComponentModel
-     * @since 7.2.0
      * @param {object} context - Contains the component.json properties
      * @constructor
      */
@@ -370,12 +369,9 @@ define(
      * @param {?string} source - 'api' | 'user' | 'silent'
      * @return {Quill.Delta} - Delta information
      */
-    RichTextEditorQuillComponentModel.prototype._quillDeleteText = function (index, length, source) {
+    RichTextEditorQuillComponentModel.prototype._quillDeleteText = function (index, length, source = 'api') {
       var self = this;
-      console.log("SELF: " + self);
-      console.log(this);
-      // return self.quill.deleteText(index,length,source);
-
+      return self.quill.deleteText(index,length,source);
     }
 
     /**
@@ -385,9 +381,8 @@ define(
      * @return {Quill.Delta} - Delta information
      */
     RichTextEditorQuillComponentModel.prototype._quillGetContents = function (index, length) {
-      console.log("AA");
-      // var self = this;
-      // return self.quill.getContents(index,length);
+      var self = this;
+      return self.quill.getContents(index,length);
     }
 
     /**
@@ -395,9 +390,8 @@ define(
      * @return {number} - Length of the editor contents
      */
     RichTextEditorQuillComponentModel.prototype._quillGetLength = function () {
-      console.log("BB");
-      // var self = this;
-      // return self.quill.getLength();
+      var self = this;
+      return self.quill.getLength();
     }
 
     /**
@@ -408,9 +402,8 @@ define(
      * @return {Quill.Delta} - Delta information
      */
     RichTextEditorQuillComponentModel.prototype._quillGetText = function(index, length) {
-      console.log("AA");
-      // var self = this;
-      // return self.quill.getText(index,length);
+      var self = this;
+      return self.quill.getText(index,length);
     }
 
     /**

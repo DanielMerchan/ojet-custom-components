@@ -22,15 +22,15 @@ define(['knockout', 'ojc-rte-quill/loader', 'ojs/ojbutton'
             }
 
             self.deleteText = (event,vm) => {
-                self.editorElement.deleteText();
+                self.editorElement.deleteText(1,2);
             }
 
             self.getContents = (event,vm)  => {
-                self.editorElement.getContents();
+                console.log(self.editorElement.getContents());
             }
 
             self.getLength =  (event,vm)  => {
-                self.editorElement.getLength();
+                console.log(self.editorElement.getLength());
             }
 
             self.modules = {
