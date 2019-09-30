@@ -15,23 +15,22 @@ define(['knockout', 'ojc-rte-quill/loader', 'ojs/ojbutton'
             // Below are a set of the ViewModel methods invoked by the oj-module component.
             // Please reference the oj-module jsDoc for additional information.
 
+            self.editorElement;
+
             self.testSexy = event => {
                 console.log("SEXY");
             }
 
-            self.deleteText = event => {
-                const editorElement = document.getElementById('editor');
-                editorElement.deleteText();
+            self.deleteText = (event,vm) => {
+                self.editorElement.deleteText();
             }
 
-            self.getContents = event => {
-                const editorElement = document.getElementById('editor');
-                editorElement.getContents();
+            self.getContents = (event,vm)  => {
+                self.editorElement.getContents();
             }
 
-            self.getLength = event => {
-                const editorElement = document.getElementById('editor');
-                editorElement.getLength();
+            self.getLength =  (event,vm)  => {
+                self.editorElement.getLength();
             }
 
             self.modules = {
@@ -47,7 +46,7 @@ define(['knockout', 'ojc-rte-quill/loader', 'ojs/ojbutton'
              * after being disconnected.
              */
             self.connected = function() {
-                // Implement if needed
+                self.editorElement = document.getElementById('asf');
             };
 
             /**

@@ -5,8 +5,8 @@
 'use strict';
 define(
   ['ojs/ojlogger', 'ojs/ojmessaging', 'ojs/ojtranslation', 'knockout', 'ojL10n!./resources/nls/ojc-rte-quill-strings', './libs/katex/katex.min', './libs/highlight/highlight',
-  './libs/quill/quill.min', 'css!./libs/katex/katex.min', 'css!./libs/quill/quill.snow',  'css!./libs/highlight/styles/github',
-  ], 
+    './libs/quill/quill.min', 'css!./libs/katex/katex.min', 'css!./libs/quill/quill.snow', 'css!./libs/highlight/styles/github',
+  ],
   function (Logger, Message, Translations, ko, componentStrings, katex, hljs, Quill, ) {
 
     /**
@@ -39,9 +39,6 @@ define(
       self.quillOptions.scrollingContainer = self.properties.scrollingContainer;
       self.quillOptions.theme = self.properties.theme;
       self.quillOptions.modules.toolbar = '#' + self.toolbarContainerId;
-      if (Logger.level > Logger.LEVEL_WARN) {
-        Logger.info("Quill JS Option parameters", {quillOptions:  self.quillOptions});
-      }
 
       // hljs.configure({   // optionally configure hljs
       //   languages: ['javascript', 'ruby', 'python']
@@ -93,8 +90,8 @@ define(
       self.cleanBlockFormatDisplay = 'none';
       self.cleanFormatDisplay = 'none';
 
-       // If Toolbar is provided as non static array, then the toolbar is completily removed
-       self.properties.toolbarOptions.forEach(toolbarOption => {
+      // If Toolbar is provided as non static array, then the toolbar is completily removed
+      self.properties.toolbarOptions.forEach(toolbarOption => {
         switch (toolbarOption) {
           case self._quillToolbarOptionsEnum.FONT: {
             self.fontBlockFormatDisplay = '';
@@ -103,47 +100,47 @@ define(
           }
           case self._quillToolbarOptionsEnum.SIZE: {
             self.fontBlockFormatDisplay = '';
-            self.fontSizeFormatDisplay= 'inline';
+            self.fontSizeFormatDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.BOLD: {
             self.fontStyleBlockFormatDisplay = '';
-            self.fontStyleBoldFormatDisplay= 'inline';
+            self.fontStyleBoldFormatDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.ITALIC: {
             self.fontStyleBlockFormatDisplay = '';
-            self.fontStyleItalicFormatDisplay= 'inline';
+            self.fontStyleItalicFormatDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.UNDERLINE: {
             self.fontStyleBlockFormatDisplay = '';
-            self.fontStyleUnderlineFormatDisplay= 'inline';
+            self.fontStyleUnderlineFormatDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.STRIKETHROUGH: {
             self.fontStyleBlockFormatDisplay = '';
-            self.fontStyleStrikeFormatDisplay= 'inline';
+            self.fontStyleStrikeFormatDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.COLOR: {
             self.fontColorBlockFormatDisplay = '';
-            self.fontColorFormatDisplay= 'inline';
+            self.fontColorFormatDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.BACKGROUND: {
             self.fontColorBlockFormatDisplay = '';
-            self.fontColorBackgroundFormatDisplay= 'inline';
+            self.fontColorBackgroundFormatDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.SUB_SCRIPT: {
             self.scriptBlockFormatDisplay = '';
-            self.scriptSubFormatDisplay= 'inline';
+            self.scriptSubFormatDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.SUPER_SCRIPT: {
             self.scriptBlockFormatDisplay = '';
-            self.scriptSuperFormatDisplay= 'inline';
+            self.scriptSuperFormatDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.HEADER: {
@@ -153,65 +150,66 @@ define(
           }
           case self._quillToolbarOptionsEnum.BLOCKQUOUTE: {
             self.blockFormatDisplay = '';
-            self.blockBlockquouteDisplay= 'inline';
+            self.blockBlockquouteDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.CODE_BLOCK: {
             self.blockFormatDisplay = '';
-            self.blockCodeblockDisplay= 'inline';
+            self.blockCodeblockDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.LIST: {
             self.indentListBlockFormatDisplay = '';
-            self.listFormatDisplay= 'inline';
+            self.listFormatDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.INDENT: {
             self.indentListBlockFormatDisplay = '';
-            self.indentFormatDisplay= 'inline';
+            self.indentFormatDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.DIRECTION: {
             self.alignDirectionBlockFormatDisplay = '';
-            self.directionFormatDisplay= 'inline';
+            self.directionFormatDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.ALIGNMENT: {
             self.alignDirectionBlockFormatDisplay = '';
-            self.alignFormatDisplay= 'inline';
+            self.alignFormatDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.LINK: {
             self.addBlockFormatDisplay = '';
-            self.addLinkFormatDisplay= 'inline';
+            self.addLinkFormatDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.IMAGE: {
             self.addBlockFormatDisplay = '';
-            self.addImageFormatDisplay= 'inline';
+            self.addImageFormatDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.VIDEO: {
             self.addBlockFormatDisplay = '';
-            self.addVideoFormatDisplay= 'inline';
+            self.addVideoFormatDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.FORMULA: {
             self.addBlockFormatDisplay = '';
-            self.addFormulaFormatDisplay= 'inline';
+            self.addFormulaFormatDisplay = 'inline';
             break;
           }
           case self._quillToolbarOptionsEnum.CLEAN: {
             self.cleanBlockFormatDisplay = '';
-            self.cleanFormatDisplay= 'inline';
+            self.cleanFormatDisplay = 'inline';
             break;
           }
-          default: 
-            Logger.warn("Toolbar Option not valid", {toolbarOption: toolbarOption});
+          default:
+            Logger.warn("Toolbar Option not valid", { toolbarOption: toolbarOption });
             break;
         }
       });
     };
+
 
     // Support Enums for QuillJS
 
@@ -347,21 +345,21 @@ define(
       }
     };
 
-    // RichTextEditorQuillComponentModel.prototype.activated = function (context) {
-    //   console.log("[rte] activated");
-    // };
+    RichTextEditorQuillComponentModel.prototype.activated = function (context) {
+      console.log("[rte] activated");
+    };
 
-    // RichTextEditorQuillComponentModel.prototype.connected = function (context) {
-    //   console.log("[rte] connected");
-    // };
+    RichTextEditorQuillComponentModel.prototype.connected = function (context) {
+      console.log("[rte] connected");
+    };
 
-    // RichTextEditorQuillComponentModel.prototype.disconnect = function(context){
-    //   console.log("[rte] disconnect");
-    // };
+    RichTextEditorQuillComponentModel.prototype.disconnect = function (context) {
+      console.log("[rte] disconnect");
+    };
 
-    // RichTextEditorQuillComponentModel.prototype.propertyChanged = function(context){
-    //   console.log("[rte] propertyChanged");
-    // };;
+    RichTextEditorQuillComponentModel.prototype.propertyChanged = function (context) {
+      console.log("[rte] propertyChanged");
+    };;
 
     // Rich Text Editor - Web Component Methods
 
@@ -372,7 +370,7 @@ define(
      * @param {?string} source - 'api' | 'user' | 'silent'
      * @return {Quill.Delta} - Delta information
      */
-    RichTextEditorQuillComponentModel.prototype._quillDeleteText = (index, length, source) => {
+    RichTextEditorQuillComponentModel.prototype._quillDeleteText = function (index, length, source) {
       var self = this;
       console.log("SELF: " + self);
       console.log(this);
@@ -386,7 +384,7 @@ define(
      * @param {number} length - How many characters to be taken
      * @return {Quill.Delta} - Delta information
      */
-    RichTextEditorQuillComponentModel.prototype._quillGetContents = (index, length) => {
+    RichTextEditorQuillComponentModel.prototype._quillGetContents = function (index, length) {
       console.log("AA");
       // var self = this;
       // return self.quill.getContents(index,length);
@@ -396,7 +394,7 @@ define(
      * Retrieves the length of the editor contents. Note even when Quill is empty, there is still a blank line represented by ‘\n’, so getLength will return 1.
      * @return {number} - Length of the editor contents
      */
-    RichTextEditorQuillComponentModel.prototype._quillGetLength = () => {
+    RichTextEditorQuillComponentModel.prototype._quillGetLength = function () {
       console.log("BB");
       // var self = this;
       // return self.quill.getLength();
@@ -409,7 +407,7 @@ define(
      * @param {number} length - How many characters to be taken
      * @return {Quill.Delta} - Delta information
      */
-    RichTextEditorQuillComponentModel.prototype._quillGetText = (index, length) => {
+    RichTextEditorQuillComponentModel.prototype._quillGetText = function(index, length) {
       console.log("AA");
       // var self = this;
       // return self.quill.getText(index,length);
