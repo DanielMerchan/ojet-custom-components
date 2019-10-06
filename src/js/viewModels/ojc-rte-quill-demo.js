@@ -7,8 +7,8 @@
  * Your customer ViewModel code goes here
  */
 define(['knockout', 'ojc-rte-quill/loader', 'ojs/ojbutton'
-    ],
-    function(ko) {
+],
+    function (ko) {
 
         function CustomerViewModel() {
             var self = this;
@@ -21,20 +21,36 @@ define(['knockout', 'ojc-rte-quill/loader', 'ojs/ojbutton'
                 console.log("SEXY");
             }
 
-            self.deleteText = (event,vm) => {
-                self.editorElement.deleteText(1,2);
+            self.deleteText = (event, vm) => {
+                self.editorElement.deleteText(1, 2);
             }
 
-            self.getContents = (event,vm)  => {
-                console.log(self.editorElement.getContents());
+            self.getContents = (event, vm) => {
+                console.log(self.editorElement.getContents(1, 40));
             }
 
-            self.getLength =  (event,vm)  => {
+            self.getLength = (event, vm) => {
                 console.log(self.editorElement.getLength());
             }
 
+            self.getText = (event, vm) => {
+                console.log(self.editorElement.getText(x));
+            }
+
+            self.insertEmbed = (event, vm) => {
+                console.log(self.editorElement.insertEmbed(10, 'image', 'https://avatars0.githubusercontent.com/u/7116480?s=460&v=4'));
+            }
+
+            self.setText = (event, vm) => {
+                console.log(self.editorElement.insertText(1, "Magic Goose", { bold: true }));
+            }
+
+            self.setContents = (event,vm) => {
+                console.log(self.editorElement.setContents([{insert:'Culo'}]));
+            1}
+
             self.modules = {
-                syntax:true
+                syntax: true
             }
 
             /**
@@ -45,14 +61,14 @@ define(['knockout', 'ojc-rte-quill/loader', 'ojs/ojbutton'
              * and inserted into the DOM and after the View is reconnected
              * after being disconnected.
              */
-            self.connected = function() {
+            self.connected = function () {
                 self.editorElement = document.getElementById('asf');
             };
 
             /**
              * Optional ViewModel method invoked after the View is disconnected from the DOM.
              */
-            self.disconnected = function() {
+            self.disconnected = function () {
                 // Implement if needed
             };
 
@@ -60,7 +76,7 @@ define(['knockout', 'ojc-rte-quill/loader', 'ojs/ojbutton'
              * Optional ViewModel method invoked after transition to the new View is complete.
              * That includes any possible animation between the old and the new View.
              */
-            self.transitionCompleted = function() {
+            self.transitionCompleted = function () {
                 // Implement if needed
             };
         }

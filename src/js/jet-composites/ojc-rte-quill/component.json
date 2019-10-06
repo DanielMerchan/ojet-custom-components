@@ -148,6 +148,74 @@
           "type": "number"
         }
       ]
+    },
+    "insertEmbed": {
+      "description": "Insert embedded content into the editor, returning a Delta representing the change. Source may be \"user\", \"api\", or \"silent\". Calls where the source is \"user\" when the editor is disabled are ignored.",
+      "internalName": "_quillInsertEmbed",
+      "params": [
+        {
+          "name": "index",
+          "description": "Starting index for embedding the content",
+          "type": "number"
+        },
+        {
+          "name": "type",
+          "description": "Type of the content 'image' | 'video' | 'link' | 'formula'",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "description": "The content to be inserted",
+          "type": "any"
+        },
+        {
+          "name": "source",
+          "description": " 'api' | 'user' | 'silent'",
+          "type": "?string"
+        }
+      ]
+    },
+    "insertText": {
+      "description": "Inserts text into the editor, optionally with a specified format or multiple formats. Returns a Delta representing the change. Source may be \"user\", \"api\", or \"silent\". Calls where the source is \"user\" when the editor is disabled are ignored.",
+      "internalName": "_quillInsertText",
+      "params": [
+        {
+          "name": "index",
+          "description": "Starting index for adding text",
+          "type": "number"
+        },
+        {
+          "name": "text",
+          "description": "Text to be introduced",
+          "type": "string"
+        },
+        {
+          "name": "formats",
+          "description": "JSON Object containing format - value pairs",
+          "type": "object"
+        },
+        {
+          "name": "source",
+          "description": " 'api' | 'user' | 'silent'",
+          "type": "?string"
+        }
+      ]
+    },
+    "setContents": {
+      "description": "Overwrites editor with given contents. Contents should end with a newline. Returns a Delta representing the change. This will be the same as the Delta passed in, if given Delta had no invalid operations. Source may be \"user\", \"api\", or \"silent\". Calls where the source is \"user\" when the editor is disabled are ignored.",
+      "internalName": "_quillSetContents",
+      "params": [
+        {
+          "name": "delta",
+          "description": "New content provided to be provided as Delta Object",
+          "type": "object"
+        },
+        {
+          "name": "source",
+          "description": " 'api' | 'user' | 'silent'",
+          "type": "?string"
+        }
+      ]
     }
   },
   "events": {

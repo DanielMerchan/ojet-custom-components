@@ -26,8 +26,8 @@ define(['knockout','ojs/ojbutton', 'ojs/ojknockout', 'ojs/ojchart','ojc-show-pri
                 { name: "Customer - Indications", items: [10, 30], stackCategory: "Customer", color: "#195174", displayInLegend: 'off', categories: ["CustomerIndications"] },
                 { name: "Customer - Hold Cover", items: [20, 10], stackCategory: "Customer", color: "#267db3", displayInLegend: 'off', categories: ["CustomerHoldCover"] },
                 { name: "Customer - Unsubmitted", items: [55, 30], stackCategory: "Customer", color: "#4ca3d9", displayInLegend: 'off', categories: ["CustomerUnsubmitted"] },
-                { name: "Atradius - Credit Limit Decisions", items: [70, 20], stackCategory: "Atradius", color: "#777777", displayInLegend: 'off', categories: ["AtradiusCreditLimitDecisions"] },
-                { name: "Industry - Credit Limit Decisions", items: [50, 30], stackCategory: "Industry", color: "#FF00FF", displayInLegend: 'off', categories: ["IndustryCreditLimitDecisions"] }
+                { name: "XX - Credit Limit Decisions", items: [70, 20], stackCategory: "Pigeon", color: "#777777", displayInLegend: 'off', categories: ["PigeonCreditLimitDecisions"] },
+                { name: "YY - Credit Limit Decisions", items: [50, 30], stackCategory: "Duck", color: "#FF00FF", displayInLegend: 'off', categories: ["DuckCreditLimitDecisions"] }
             ];
             var barGroups = ["0-10", "11-20"];
 
@@ -40,11 +40,11 @@ define(['knockout','ojs/ojbutton', 'ojs/ojknockout', 'ojs/ojchart','ojc-show-pri
                 },
 
                 {
-                    title: "Atradius",
-                    items: [{ color: "#777777", text: "Credit Limit Decisions", id: "AtradiusCreditLimitDecisions" }]
+                    title: "Pigeon",
+                    items: [{ color: "#777777", text: "Credit Limit Decisions", id: "PigeonCreditLimitDecisions" }]
                 }, {
-                    title: "Industry",
-                    items: [{ color: "#FF00FF", text: "Credit Limit Decisions", id: "IndustryCreditLimitDecisions" }]
+                    title: "Duck",
+                    items: [{ color: "#FF00FF", text: "Credit Limit Decisions", id: "DuckCreditLimitDecisions" }]
                 }
             ];
 

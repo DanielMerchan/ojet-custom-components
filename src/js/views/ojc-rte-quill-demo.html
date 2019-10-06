@@ -2,10 +2,23 @@
  Copyright (c) 2014, 2019, Oracle and/or its affiliates.
  The Universal Permissive License (UPL), Version 1.0
  -->
- <div class="oj-hybrid-padding">
+<div class="oj-hybrid-padding">
     <h1>OJC - Rich Text Edit Quill Example</h1>
-    <ojc-rte-quill id="asf" on-ojc-text-change="[[testSexy]]" debug="warn" placeholder="Hola caraculo"></ojc-rte-quill>
-    <oj-button on-oj-action="[[deleteText]]">Delete Text</oj-button>
-    <oj-button on-oj-action="[[getContents]]">Get Contents</oj-button>
-    <oj-button on-oj-action="[[getLength]]">Get Length</oj-button>
+    <div class="oj-flex oj-flex-items-pad">
+        <div class="oj-flex-item">
+            <h3>Oracle JET Custom - Rich Text Editor Quill</h3>
+            <ojc-rte-quill id="asf" modules="[[modules]]" theme="snow" on-ojc-text-change="[[testSexy]]" placeholder="Hola caraculo">
+            </ojc-rte-quill>
+        </div>
+        <div class="oj-flex-item">
+            <h3>Test API - Hardcoded (To be Re-Design with a form)</h3>
+            <oj-button on-oj-action="[[deleteText]]">Delete Text</oj-button>
+            <oj-button on-oj-action="[[getContents]]">Get Contents</oj-button>
+            <oj-button on-oj-action="[[getLength]]">Get Length</oj-button>
+            <oj-button on-oj-action="[[getText]]">Get Text</oj-button>
+            <oj-button on-oj-action="[[insertEmbed]]">Insert Embed</oj-button>
+            <oj-button on-oj-action="[[setText]]">Set Text</oj-button>
+            <oj-button on-oj-action="[[setContents]]">Set Contents</oj-button>
+        </div>
+    </div>
 </div>

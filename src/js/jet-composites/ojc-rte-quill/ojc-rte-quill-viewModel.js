@@ -4,10 +4,11 @@
 */
 'use strict';
 define(
-  ['ojs/ojlogger', 'ojs/ojmessaging', 'ojs/ojtranslation', 'knockout', 'ojL10n!./resources/nls/ojc-rte-quill-strings', './libs/katex/katex.min', './libs/highlight/highlight',
-    './libs/quill/quill.min', 'css!./libs/katex/katex.min', 'css!./libs/quill/quill.snow', 'css!./libs/highlight/styles/github',
+  ['ojs/ojlogger', 'ojs/ojmessaging', 'ojs/ojtranslation', 'knockout', 'ojL10n!./resources/nls/ojc-rte-quill-strings', './libs/katex/katex.min', './libs/highlight/highlight.pack',
+   './libs/quill/quill.min', 'css!./libs/katex/katex.min', 'css!./libs/quill/quill.snow', 'css!./libs/highlight/styles/monokai-sublime',
   ],
-  function (Logger, Message, Translations, ko, componentStrings, katex, hljs, Quill, ) {
+
+  function (Logger, Message, Translations, ko, componentStrings, katex, hljs, Quill) {
 
     /**
      * @name RichTextEditorQuillComponentModel
@@ -16,6 +17,7 @@ define(
      */
     function RichTextEditorQuillComponentModel(context) {
       var self = this;
+      console.log(katex);
       //At the start of your viewModel constructor
       self.composite = context.element;
       self.loggingIdentity = self.loggingIdentity = 'ojc-rte-quill (' + context.uniqueId + '): ';
@@ -39,11 +41,8 @@ define(
       self.quillOptions.theme = self.properties.theme;
       self.quillOptions.modules.toolbar = '#' + self.toolbarContainerId;
 
-      // hljs.configure({   // optionally configure hljs
-      //   languages: ['javascript', 'ruby', 'python']
-      // });
-      // console.log(hljs.listLanguages());
-      // console.log(hljs.getLanguage('javascript'));
+      const loggerInitQuillOptionsMessage = Translations.applyParameters(self.res['loggerInitQuillOptions'], self.quillOptions);
+      Logger.info(self.loggingIdentity + loggerInitQuillOptionsMessage);
 
       // Handle Custom Toolbar Module properties
       // Font Format Block
@@ -203,7 +202,8 @@ define(
             break;
           }
           default:
-            Logger.warn("Toolbar Option not valid", { toolbarOption: toolbarOption });
+            const loggerToolbarOptionNotValidMessage = Translations.applyParameters(self.res['loggerToolbarOptionNotValid'], toolbarOption);
+            Logger.warn(self.loggingIdentity + loggerToolbarOptionNotValidMessage);
             break;
         }
       });
@@ -224,8 +224,9 @@ define(
     /**
      * Enum for the Formats allowed / disallowed in the Quill JS Editor.
      * This is used in combination with toolbar-options.
+     * @name _quillFormatsAllowedEnum
      * @readonly
-     * @enum {string}
+     * @enum {String}
      */
     RichTextEditorQuillComponentModel.prototype._quillFormatsAllowedEnum = {
       INLINE_BACKGROUND_COLOR: "background",
@@ -293,51 +294,9 @@ define(
       // Initializes Quill JS 
       self.quill = new Quill('#' + self.editorContainerId, self.quillOptions);
 
+      // QUILL JS - Events API
       if (self.quill) {
-        // Attach CCA Events to Quill JS Events
-        // Add text-change event listener
-        self.quill.on('text-change', (delta, oldDelta, source) => {
-          const params = {
-            'bubbles': true,
-            'detail': {
-              'value': {
-                'delta': delta,
-                'oldDelta': oldDelta,
-                'source': source
-              }
-            }
-          }
-          self.composite.dispatchEvent(new CustomEvent('ojcTextChange', params));
-        });
-
-        // Add selection-change event listener
-        self.quill.on('selection-change', (range, oldRange, source) => {
-          const params = {
-            'bubbles': true,
-            'detail': {
-              'value': {
-                "range": range,
-                "oldRange": oldRange,
-                "source": source
-              }
-            }
-          }
-          self.composite.dispatchEvent(new CustomEvent('ojcSelectionChange'), params);
-        });
-
-        // Add editor-change event listener
-        self.quill.on('editor-change', (eventName, ...args) => {
-          const params = {
-            'bubbles': true,
-            'detail': {
-              'value': {
-                'eventName': eventName,
-                'args': args
-              }
-            }
-          }
-          self.composite.dispatchEvent(new CustomEvent('ojcEditorChange'), params);
-        });
+        self._quillInitializeEvents();
 
       } else {
         self._reportError(self._errorMessageKeysEnum.QUILL_NOT_INITIALIZED, { 'editorContainerId': self.editorContainerId });
@@ -360,33 +319,124 @@ define(
       console.log("[rte] propertyChanged");
     };;
 
-    // Rich Text Editor - Web Component Methods
+    // Quill JS Events Initialization Auxiliar methods
+    /**
+     * Initializes the QuillJS Events depending if they have been provided within the CCA
+     */
+    RichTextEditorQuillComponentModel.prototype._quillInitializeEvents = function () {
+      var self = this;
+      const ojcTextChange = self.composite.getAttribute('on-ojc-text-change');
+      const ojcSelectionChange = self.composite.getAttribute('on-ojc-selection-change');
+      const ojcEditorChange = self.composite.getAttribute('on-ojc-editor-change');
+      if (ojcTextChange) {
+        self._quillOnTextChangeEvent();
+      }
+      if (ojcSelectionChange) {
+        self._quillOnSelectionChangeEvent();
+      }
+      if (ojcEditorChange) {
+        self._quillOnEditorChangeEvent();
+      }
+    }
+
+    /**
+     * Auxiliar method to register QuillJS - text-change Event
+     */
+    RichTextEditorQuillComponentModel.prototype._quillOnTextChangeEvent = function () {
+      var self = this;
+      self.quill.on('text-change', (delta, oldDelta, source) => {
+        const params = {
+          'bubbles': true,
+          'detail': {
+            'value': {
+              'delta': delta,
+              'oldDelta': oldDelta,
+              'source': source
+            }
+          }
+        }
+        self.composite.dispatchEvent(new CustomEvent('ojcTextChange', params));
+      })
+    }
+
+    /**
+     * Auxiliar method to register QuillJS - selection-change Event
+     */
+    RichTextEditorQuillComponentModel.prototype._quillOnSelectionChange = function () {
+      var self = this
+      self.quill.on('selection-change', (range, oldRange, source) => {
+        const params = {
+          'bubbles': true,
+          'detail': {
+            'value': {
+              "range": range,
+              "oldRange": oldRange,
+              "source": source
+            }
+          }
+        }
+        self.composite.dispatchEvent(new CustomEvent('ojcSelectionChange'), params);
+      });
+    }
+
+    /**
+     * Auxiliar method to register QuillJS - editor-change Event
+     */
+    RichTextEditorQuillComponentModel.prototype._quillOnEditorChange = function () {
+      var self = this;
+      self.quill.on('editor-change', (eventName, ...args) => {
+        const params = {
+          'bubbles': true,
+          'detail': {
+            'value': {
+              'eventName': eventName,
+              'args': args
+            }
+          }
+        }
+        self.composite.dispatchEvent(new CustomEvent('ojcEditorChange'), params);
+      });
+    }
+
+    // QUILLJS - Content API
 
     /**
      * Deletes text from the editor, returning a Delta representing the change. Source may be "user", "api", or "silent". Calls where the source is "user" when the editor is disabled are ignored.
      * @param {number} index - Position were to start deleting text
      * @param {number} length - Number of characters to be removed
      * @param {?string} source - 'api' | 'user' | 'silent'
-     * @return {Quill.Delta} - Delta information
+     * 
+     * @return {Delta} - Delta information
+     * {@link https://quilljs.com/docs/delta/}
+     * 
+     * @example 
+     * quill.deleteText(1, 2); // Delete two text characters after the index / cursor position 2. 'I am a sexy Goose' -> 'Im a sexy Goose'
      */
     RichTextEditorQuillComponentModel.prototype._quillDeleteText = function (index, length, source = 'api') {
       var self = this;
-      return self.quill.deleteText(index,length,source);
+      return self.quill.deleteText(index, length, source);
     }
 
     /**
      * Retrieves contents of the editor, with formatting data, represented by a Delta object.
      * @param {number} index - Start index to start getting the editor content
-     * @param {number} length - How many characters to be taken
-     * @return {Quill.Delta} - Delta information
+     * @param {number} length - How many content to be taken from the starting index. It wraps the content in different objects.
+     * 
+     * @return {Delta} - Delta information
+     * {@link https://quilljs.com/docs/delta/}
+     * 
+     * @example
+     * var delta = quill.getContents(); // Delta -> {ops: [{insert: "I am a sexy Goose"}, {insert: {image: "data/image/png..."}},...]}
+     * var delta = quill.getContents(1,2); // Delta -> {ops: [{insert: "I am a sexy Goose"}
      */
     RichTextEditorQuillComponentModel.prototype._quillGetContents = function (index, length) {
       var self = this;
-      return self.quill.getContents(index,length);
+      return self.quill.getContents(index, length);
     }
 
     /**
      * Retrieves the length of the editor contents. Note even when Quill is empty, there is still a blank line represented by ‘\n’, so getLength will return 1.
+     * 
      * @return {number} - Length of the editor contents
      */
     RichTextEditorQuillComponentModel.prototype._quillGetLength = function () {
@@ -399,12 +449,76 @@ define(
      * The length parameter defaults to the length of the remaining document.
      * @param {number} index - Start index to start getting the editor content
      * @param {number} length - How many characters to be taken
-     * @return {Quill.Delta} - Delta information
+     * 
+     * @return {Delta} - Delta information
+     * {@link https://quilljs.com/docs/delta/}
      */
-    RichTextEditorQuillComponentModel.prototype._quillGetText = function(index, length) {
+    RichTextEditorQuillComponentModel.prototype._quillGetText = function (index, length) {
       var self = this;
-      return self.quill.getText(index,length);
+      return self.quill.getText(index, length);
     }
+
+    /**
+     * Insert embedded content into the editor, returning a Delta representing the change. Source may be "user", "api", or "silent". 
+     * Calls where the source is "user" when the editor is disabled are ignored.
+     * @param {number} index - Start index where to embed the conent
+     * @param {string} type - Type of the content 'image' | 'video' | 'link' | 'formula'
+     * @param {any} value - The content to be inserted
+     * @param {?string} source - 'api' | 'user' | 'silent'
+     * 
+     * @return {Delta}
+     * {@link https://quilljs.com/docs/delta/}
+     */
+    RichTextEditorQuillComponentModel.prototype._quillInsertEmbed = function (index, type, value, source = 'api') {
+      var self = this;
+      return self.quill.insertEmbed(index, type, value, source);
+    }
+
+    /**
+     * Inserts text into the editor, optionally with a specified format or multiple formats. Returns a Delta representing the change. Source may be "user", "api", or "silent". Calls where the source is "user" when the editor is disabled are ignored.
+     * @param {number} index - Start index
+     * @param {string} text - Text to be introduced after the selected index
+     * @param {?object} formats - JSON Object containing multiple formats and values at the same time
+     * @param {?string} source - 'api' | 'user' | 'silent'
+     * 
+     * @return {Delta}
+     * {@link https://quilljs.com/docs/delta/}
+     * 
+     * @see RichTextEditorQuillComponentModel._quillFormatsAllowedEnum
+     */
+    RichTextEditorQuillComponentModel.prototype._quillInsertText = function (index, text, formats, source = 'api') {
+      var self = this;
+      self.quill.insertText(index, text, formats, source);
+    }
+
+    /**
+     * Overwrites editor with given contents. Contents should end with a newline. Returns a Delta representing the change. This will be the same as the Delta passed in, if given Delta had no invalid operations. Source may be "user", "api", or "silent". Calls where the source is "user" when the editor is disabled are ignored.
+     * @param {Delta} delta - New Content based on a Quill Delta object
+     * @param {?string} source - 'api' | 'user' | 'silent'
+     * 
+     * @return {Delta}
+     * {@link https://quilljs.com/docs/delta/}
+     * 
+     * @example 
+     * quill.setContents([{ insert: 'Hello ' },{ insert: 'World!', attributes: { bold: true } },{ insert: '\n' }]);
+     */
+    RichTextEditorQuillComponentModel.prototype._quillSetContents = function (delta, source = 'api') {
+      var self = this;
+      
+      // return self.quill.setContents(delta, source);
+    }
+
+    // TODO (Daniel Merchan): Add rest of API supported by QuillJS
+
+    // QUILLJS - Formatting API
+
+    // QUILLJS - Selection API
+
+    // QUILLJS - Editor API
+
+    // QUILLJS - Model API
+
+    // QUILLJS - Extension API
 
     /**
      * Auxuliar method for reporting errors while initializing the RTE Component
