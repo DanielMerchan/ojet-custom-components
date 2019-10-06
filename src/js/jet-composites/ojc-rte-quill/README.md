@@ -1,5 +1,2 @@
-# ojet component template
+# Oracle Jet Custom Component - Rich Text Editor Quill JS
 
-## Usage
-Refer to the oj.Composite jsdoc
-http://www.oracle.com/webfolder/technetwork/jet/jsdocs/oj.Composite.html
