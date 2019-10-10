@@ -1,10 +1,21 @@
 {
   "name": "ojc-rte-quill",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "jetVersion": "^7.2.0",
   "displayName": "Quill JS - Rich Text Editor",
   "description": "Oracle JET Custom Web Component implementing a Rich Text Editor based on QuillJS ",
   "properties": {
+    "value": {
+      "description": "The HTML Value of the Quill JS Editor",
+      "type": "string",
+      "writeback": true
+    },
+    "maxLength": {
+      "description": "Maximum numbere of characters allowed in Quill JS Editor",
+      "type": "number",
+      "value": -1,
+      "required": false
+    },
     "bounds": {
       "description": "DOM Element or a CSS selector for a DOM Element, within which the editor’s ui elements (i.e. tooltips, etc.) should be confined. Currently, it only considers left and right boundaries.",
       "type": "element",
@@ -14,7 +25,13 @@
       "description": "Shortcut for debug. Note debug is a static method and will affect other instances of Quill editors on the page. Only warning and error messages are enabled by default.",
       "type": "string",
       "value": "warn",
-      "enumValues": ["error", "warn", "info", "log", "disabled"],
+      "enumValues": [
+        "error",
+        "warn",
+        "info",
+        "log",
+        "disabled"
+      ],
       "required": false,
       "writeback": true
     },
@@ -22,7 +39,28 @@
       "description": "Whitelist of formats to allow in the editor",
       "type": "array",
       "required": false,
-      "value": ["background", "bold", "color", "font", "code", "italic", "link", "size", "strike", "script", "underline", "blockquote", "header", "indent", "list", "align", "direction", "code-block", "image", "video"]
+      "value": [
+        "background",
+        "bold",
+        "color",
+        "font",
+        "code",
+        "italic",
+        "link",
+        "size",
+        "strike",
+        "script",
+        "underline",
+        "blockquote",
+        "header",
+        "indent",
+        "list",
+        "align",
+        "direction",
+        "code-block",
+        "image",
+        "video"
+      ]
     },
     "modules": {
       "description": "Modules allow Quill’s behavior and functionality to be customized. Several officially supported modules are available to pick and choose from, some with additional configuration options and APIs. Refer to their respective documentation pages for more details.",
@@ -65,7 +103,30 @@
       "description": "Toolbar controls can either be specified by a simple array of format names or a custom HTML container.",
       "type": "array",
       "required": false,
-      "value": ["font","size","bold","underline","italic","strikethrough","color","background","sub-script","super-script","header","blockquoute","code-block","indent","list","align","direction","formula","video","image","link","clean"]
+      "value": [
+        "font",
+        "size",
+        "bold",
+        "underline",
+        "italic",
+        "strikethrough",
+        "color",
+        "background",
+        "sub-script",
+        "super-script",
+        "header",
+        "blockquoute",
+        "code-block",
+        "indent",
+        "list",
+        "align",
+        "direction",
+        "formula",
+        "video",
+        "image",
+        "link",
+        "clean"
+      ]
     },
     "placeholder": {
       "description": "Placeholder text to show when editor is empty.",
@@ -87,7 +148,11 @@
       "description": "Name of theme to use. The builtin options are “bubble” or “snow”. An invalid or falsy value will load a default minimal theme. Note the theme’s specific stylesheet still needs to be included manually. See Themes for more information.",
       "type": "string",
       "required": false,
-      "enumValues": ["bubble","snow", "base"],
+      "enumValues": [
+        "bubble",
+        "snow",
+        "base"
+      ],
       "value": "snow"
     }
   },
@@ -207,7 +272,55 @@
       "params": [
         {
           "name": "delta",
-          "description": "New content provided to be provided as Delta Object",
+          "description": "New content provided as Delta Object",
+          "type": "object"
+        },
+        {
+          "name": "source",
+          "description": " 'api' | 'user' | 'silent'",
+          "type": "?string"
+        }
+      ]
+    },
+    "setText": {
+      "description": "Sets contents of editor with given text, returing a Delta representing the change. Note Quill documents must end with a newline so one will be added for you if omitted. Source may be \"user\", \"api\", or \"silent\". Calls where the source is \"user\" when the editor is disabled are ignored.",
+      "internalName": "_quillSetText",
+      "params": [
+        {
+          "name": "text",
+          "description": "Text to be added into the editor",
+          "type": "string"
+        },
+        {
+          "name": "source",
+          "description": " 'api' | 'user' | 'silent'",
+          "type": "?string"
+        }
+      ]
+    },
+    "updateContents": {
+      "description": "Applies Delta to editor contents, returing a Delta representing the change. These Deltas will be the same if the Delta passed in had no invalid operations. Source may be \"user\", \"api\", or \"silent\". Calls where the source is \"user\" when the editor is disabled are ignored.",
+      "internalName": "_quillUpdateContents",
+      "params": [
+        {
+          "name": "delta",
+          "description": "Update the current content by a given Delta Object",
+          "type": "object"
+        },
+        {
+          "name": "source",
+          "description": " 'api' | 'user' | 'silent'",
+          "type": "?string"
+        }
+      ]
+    },
+    "getHTML": {
+      "description": "Applies Delta to editor contents, returing a Delta representing the change. These Deltas will be the same if the Delta passed in had no invalid operations. Source may be \"user\", \"api\", or \"silent\". Calls where the source is \"user\" when the editor is disabled are ignored.",
+      "internalName": "_cquillGetHTML",
+      "params": [
+        {
+          "name": "delta",
+          "description": "Update the current content by a given Delta Object",
           "type": "object"
         },
         {

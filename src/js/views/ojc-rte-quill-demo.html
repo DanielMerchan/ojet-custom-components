@@ -7,7 +7,7 @@
     <div class="oj-flex oj-flex-items-pad">
         <div class="oj-flex-item">
             <h3>Oracle JET Custom - Rich Text Editor Quill</h3>
-            <ojc-rte-quill id="asf" modules="[[modules]]" theme="snow" on-ojc-text-change="[[testSexy]]" placeholder="Hola caraculo">
+            <ojc-rte-quill id="asf" value="{{editorValue}}" max-length="10" modules="[[modules]]" theme="snow" on-ojc-text-change="[[testSexy]]" placeholder="Hola caraculo">
             </ojc-rte-quill>
         </div>
         <div class="oj-flex-item">
@@ -17,8 +17,10 @@
             <oj-button on-oj-action="[[getLength]]">Get Length</oj-button>
             <oj-button on-oj-action="[[getText]]">Get Text</oj-button>
             <oj-button on-oj-action="[[insertEmbed]]">Insert Embed</oj-button>
-            <oj-button on-oj-action="[[setText]]">Set Text</oj-button>
+            <oj-button on-oj-action="[[insertText]]">Insert Text</oj-button>
             <oj-button on-oj-action="[[setContents]]">Set Contents</oj-button>
+            <oj-button on-oj-action="[[setText]]">Set Text</oj-button>
+            <oj-button on-oj-action="[[getHTML]]">Get HTML</oj-button>
         </div>
     </div>
 </div>

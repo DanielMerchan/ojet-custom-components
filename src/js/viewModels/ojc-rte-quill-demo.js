@@ -16,6 +16,7 @@ define(['knockout', 'ojc-rte-quill/loader', 'ojs/ojbutton'
             // Please reference the oj-module jsDoc for additional information.
 
             self.editorElement;
+            self.editorValue = ko.observable("<p><b>Culo</b></p>");
 
             self.testSexy = event => {
                 console.log("SEXY");
@@ -41,13 +42,26 @@ define(['knockout', 'ojc-rte-quill/loader', 'ojs/ojbutton'
                 console.log(self.editorElement.insertEmbed(10, 'image', 'https://avatars0.githubusercontent.com/u/7116480?s=460&v=4'));
             }
 
-            self.setText = (event, vm) => {
+            self.insertText = (event, vm) => {
                 console.log(self.editorElement.insertText(1, "Magic Goose", { bold: true }));
             }
 
             self.setContents = (event,vm) => {
                 console.log(self.editorElement.setContents([{insert:'Culo'}]));
-            1}
+            }
+
+            self.setText = (event,vm) => {
+                console.log(self.editorElement.setText([{insert:'Culo'}]));
+            }
+
+            self.updateContents = (event,vm) => {
+                // Delta vs Wrapp my own object to convert to Delta
+            }
+
+            self.getHTML = (event,vm) => {
+                console.log(self.editorValue());
+                console.log(self.editorElement.getHTML());
+            }
 
             self.modules = {
                 syntax: true
