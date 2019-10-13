@@ -64,9 +64,9 @@ Example:
 {
 	"syntax": true,
 	"history": {
-	      delay: 2000,
-	      maxStack: 500,
-	      userOnly: true
+	      "delay": 2000,
+	      "maxStack": 500,
+	      "userOnly": true
     }
 } 
 ```
