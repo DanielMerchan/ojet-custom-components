@@ -97,7 +97,7 @@ The possible values are:
 ## Methods
 The following methods are available within this Web Component
 ###  Custom API
-### getHtml
+### getHTML
 Returns the HTML contained in the text editor
 Example
 ```html
@@ -106,7 +106,7 @@ Example
 ```
 ```javascript
 const editor = document.getElementById('editor');
-console.log(editor.getHtml());
+console.log(editor.getHTML());
 ```
 
 ### Quill JS API
