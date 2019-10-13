@@ -34,7 +34,9 @@ define([...,'ojc-rte-quill/loader', ...])
 ```
 Use it in your Module HTML as follows:
 ```html
-<ojc-rte-quill  id="myEditor" value="{{editorValue}}"  max-length="100"  modules="[[modules]]" theme="snow"  on-ojc-text-change="[[myTextChangeHandler]]"  placeholder="Text to be displayed when empty">
+<ojc-rte-quill  id="myEditor" value="{{editorValue}}"  
+                max-length="100"  modules="[[modules]]" theme="snow"  
+                on-ojc-text-change="[[myTextChangeHandler]]" placeholder="Text to be displayed when empty">
 </ojc-rte-quill>
 ```
 ## Properties
