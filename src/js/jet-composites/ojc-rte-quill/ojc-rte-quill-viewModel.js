@@ -352,7 +352,7 @@ define(
      */
     RichTextEditorQuillComponentModel.prototype._quillOnTextChangeEvent = function () {
       var self = this;
-      self.quill.on('text-change', (delta, oldDelta, source) => {
+      self.quill.on('text-change', function (delta, oldDelta, source) {
         const params = {
           'bubbles': true,
           'detail': {
@@ -363,10 +363,9 @@ define(
             }
           }
         }
-        console.log(self._quillGetLength());
-        console.log(self.maxLength);
         if (self._quillGetLength() > self.maxLength) {
           self._quillDeleteText(self.maxLength, self._quillGetLength());
+          self.messageQueue.shift();
           self.messageQueue.push({ summary: "Maximun Reached", detail: "Maximum length is: " + self.maxLength, severity: Message.SEVERITY_TYPE.ERROR });
         }
 
@@ -381,7 +380,7 @@ define(
      */
     RichTextEditorQuillComponentModel.prototype._quillOnSelectionChangeEvent = function () {
       var self = this
-      self.quill.on('selection-change', (range, oldRange, source) => {
+      self.quill.on('selection-change', function(range, oldRange, source) {
         const params = {
           'bubbles': true,
           'detail': {
@@ -393,7 +392,7 @@ define(
           }
         }
         if (self.ojcSelectionChange) {
-          self.composite.dispatchEvent(new CustomEvent('ojcSelectionChange'), params);
+          self.composite.dispatchEvent(new CustomEvent('ojcSelectionChange', params));
         }
       });
     }
@@ -403,7 +402,7 @@ define(
      */
     RichTextEditorQuillComponentModel.prototype._quillOnEditorChangeEvent = function () {
       var self = this;
-      self.quill.on('editor-change', (eventName, ...args) => {
+      self.quill.on('editor-change', function (eventName, ...args) {
         const params = {
           'bubbles': true,
           'detail': {
@@ -414,7 +413,7 @@ define(
           }
         }
         if (self.ojcEditorChange) {
-          self.composite.dispatchEvent(new CustomEvent('ojcEditorChange'), params);
+          self.composite.dispatchEvent(new CustomEvent('ojcEditorChange', params));
         }
       });
     }

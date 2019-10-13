@@ -1,6 +1,6 @@
 {
   "name": "ojc-rte-quill",
-  "version": "0.1.0",
+  "version": "0.0.2",
   "jetVersion": "^7.2.0",
   "displayName": "Quill JS - Rich Text Editor",
   "description": "Oracle JET Custom Web Component implementing a Rich Text Editor based on QuillJS ",
@@ -100,7 +100,7 @@
       }
     },
     "toolbarOptions": {
-      "description": "Toolbar controls can either be specified by a simple array of format names or a custom HTML container.",
+      "description": "Describe the Toolbar Controls to be displayed.",
       "type": "array",
       "required": false,
       "value": [
@@ -145,7 +145,7 @@
       "required": false
     },
     "theme": {
-      "description": "Name of theme to use. The builtin options are “bubble” or “snow”. An invalid or falsy value will load a default minimal theme. Note the theme’s specific stylesheet still needs to be included manually. See Themes for more information.",
+      "description": "Name of theme to use. The builtin options are “bubble” or “snow”. An invalid or falsy value will load a default minimal theme.",
       "type": "string",
       "required": false,
       "enumValues": [
@@ -158,7 +158,7 @@
   },
   "methods": {
     "deleteText": {
-      "description": "Programmatically invoke the export, can be used instead of pressing the button. Returns false if export is currently disabled because the component is invalid in some way",
+      "description": "Deletes text from the editor, returning a Delta representing the change. Source may be \"user\", \"api\", or \"silent\". Calls where the source is \"user\" when the editor is disabled are ignored.",
       "internalName": "_quillDeleteText",
       "params": [
         {
@@ -316,19 +316,7 @@
     },
     "getHTML": {
       "description": "Applies Delta to editor contents, returing a Delta representing the change. These Deltas will be the same if the Delta passed in had no invalid operations. Source may be \"user\", \"api\", or \"silent\". Calls where the source is \"user\" when the editor is disabled are ignored.",
-      "internalName": "_cquillGetHTML",
-      "params": [
-        {
-          "name": "delta",
-          "description": "Update the current content by a given Delta Object",
-          "type": "object"
-        },
-        {
-          "name": "source",
-          "description": " 'api' | 'user' | 'silent'",
-          "type": "?string"
-        }
-      ]
+      "internalName": "_cquillGetHTML"
     }
   },
   "events": {

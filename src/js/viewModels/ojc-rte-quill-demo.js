@@ -16,10 +16,18 @@ define(['knockout', 'ojc-rte-quill/loader', 'ojs/ojbutton'
             // Please reference the oj-module jsDoc for additional information.
 
             self.editorElement;
-            self.editorValue = ko.observable("<p><b>Culo</b></p>");
+            self.editorValue = ko.observable("<p><strong>Culo</strong></p>");
 
-            self.testSexy = event => {
-                console.log("SEXY");
+            self.testTextChange = event => {
+                console.log(event.detail.value.delta);
+                console.log(event.detail.value.oldDelta);
+                console.log(event.detail.value.source);
+            }
+
+            self.testSelectionChange = event => {
+                console.log(event.detail.value.oldRange);
+                console.log(event.detail.value.range);
+                console.log(event.detail.value.source);
             }
 
             self.deleteText = (event, vm) => {
