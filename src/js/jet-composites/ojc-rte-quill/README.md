@@ -15,7 +15,14 @@ https://quilljs.com
 | 0.1.0 | Tested, bug fixing and releases this minor release that can be used |
 
 ## Pre-requisites
-Oracle JET Application 7.2.0+
+ - [NodeJS](https://nodejs.org/es/download/): Make sure you have the latest version of NodeJS downloaded and installed 
+ - [Oracle JET](https://www.oracle.com/webfolder/technetwork/jet/index.html) version 7.x.x
+```
+>npm install -g @oracle/ojet-cli
+>ojet --version
+
+Oracle JET Command Line Interface, version: 7.2.0
+```
 
 ## Installation
 >NOTE: A NPM package is planned for the future for installing using npm cli
