@@ -91,5 +91,6 @@ No CSS available
 ## Tests
 Not implemented yet
 
-## Limitations known in current release: 1.0.0
-No current limitations detected
+## Limitations known in current release: 0.1.0
+- There are some errors in the Printable Page
+- Not all browsers are tested
