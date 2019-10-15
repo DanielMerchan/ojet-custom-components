@@ -86,12 +86,8 @@ Used for providing an endIcon to the Button
 ```
 
 ## Styles
-You can add a background-image using your own css
-```css
-#component-container ojc-card .ojc-card-front-side {
-    background-image: url('../images/composites/card-background_1.png');
-}
-```
+No CSS available
+
 ## Tests
 Not implemented yet
 
