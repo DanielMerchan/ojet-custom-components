@@ -1,4 +1,4 @@
-# OJC Rich Text Editor based on QuillJS
+# OJC Show Printable Page
 
 ```<ojc-show-printable-page>``` it is a Web Component to trigger a Print of the current 
 

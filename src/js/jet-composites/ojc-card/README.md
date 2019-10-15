@@ -1,4 +1,4 @@
-# OJC Rich Text Editor based on QuillJS
+# OJC Card
 
 ```<ojc-card>``` is a Card HTML Container to display Employee information based on [Oracle JET Cookbook Demo Card](https://www.oracle.com/webfolder/technetwork/jet/jetCookbook.html?component=composite&demo=basic)
 
