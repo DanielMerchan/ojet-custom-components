@@ -16,18 +16,26 @@ define(['knockout', 'ojc-rte-quill/loader', 'ojs/ojbutton'
             // Please reference the oj-module jsDoc for additional information.
 
             self.editorElement;
-            self.editorValue = ko.observable("<p><strong>Culo</strong></p>");
+            self.editorValue = ko.observable("<p><strong>I am a hardcoded initial value provided :)</strong></p>");
 
             self.testTextChange = event => {
-                console.log(event.detail.value.delta);
-                console.log(event.detail.value.oldDelta);
-                console.log(event.detail.value.source);
+                console.log("[on-ojc-text-change]" + event.detail.value.delta);
+                console.log("[on-ojc-text-change]" + event.detail.value.oldDelta);
+                console.log("[on-ojc-text-change]" + event.detail.value.source);
             }
 
             self.testSelectionChange = event => {
-                console.log(event.detail.value.oldRange);
-                console.log(event.detail.value.range);
-                console.log(event.detail.value.source);
+                console.log("[on-ojc-selection-change]" + event.detail.value.oldRange);
+                console.log("[on-ojc-selection-change]" + event.detail.value.range);
+                console.log("[on-ojc-selection-change]" + event.detail.value.source);
+            }
+
+            self.testEditorChange = event => {
+                console.log("[on-ojc-editor-change]" + event.detail.value.eventName);
+                console.log("[on-ojc-editor-change]" + event.detail.value.args[0]);
+                console.log("[on-ojc-editor-change]" + event.detail.value.args[1]);
+                console.log("[on-ojc-editor-change]" + event.detail.value.args[2]);
+
             }
 
             self.deleteText = (event, vm) => {
@@ -43,7 +51,7 @@ define(['knockout', 'ojc-rte-quill/loader', 'ojs/ojbutton'
             }
 
             self.getText = (event, vm) => {
-                console.log(self.editorElement.getText(x));
+                console.log(self.editorElement.getText());
             }
 
             self.insertEmbed = (event, vm) => {
@@ -54,19 +62,19 @@ define(['knockout', 'ojc-rte-quill/loader', 'ojs/ojbutton'
                 console.log(self.editorElement.insertText(1, "Magic Goose", { bold: true }));
             }
 
-            self.setContents = (event,vm) => {
-                console.log(self.editorElement.setContents([{insert:'Culo'}]));
+            self.setContents = (event, vm) => {
+                console.log(self.editorElement.setContents([{ insert: 'Test Text' }]));
             }
 
-            self.setText = (event,vm) => {
-                console.log(self.editorElement.setText([{insert:'Culo'}]));
+            self.setText = (event, vm) => {
+                console.log(self.editorElement.setText('Hello everyone, I am too sexy \n'));
             }
 
-            self.updateContents = (event,vm) => {
+            self.updateContents = (event, vm) => {
                 // Delta vs Wrapp my own object to convert to Delta
             }
 
-            self.getHTML = (event,vm) => {
+            self.getHTML = (event, vm) => {
                 console.log(self.editorValue());
                 console.log(self.editorElement.getHTML());
             }
@@ -84,7 +92,7 @@ define(['knockout', 'ojc-rte-quill/loader', 'ojs/ojbutton'
              * after being disconnected.
              */
             self.connected = function () {
-                self.editorElement = document.getElementById('asf');
+                self.editorElement = document.getElementById('testEditor');
             };
 
             /**

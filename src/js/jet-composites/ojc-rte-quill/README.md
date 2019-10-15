@@ -8,10 +8,11 @@ https://quilljs.com
 
 > IMPORTANT: The component properties, methods, events and slots are suitable for big changes till release 1.0.0 happens
 
-|Version| Descriptiojn  |
+|Version| Description  |
 |--|--|
 | 0.0.1 | Initial version commit, work in progress  |
 | 0.0.2 | Added maxLength property (suitable for validators change) |
+| 0.1.0 | Tested, bug fixing and releases this minor release that can be used |
 
 ## Pre-requisites
 Oracle JET Application 7.2.0+
@@ -152,9 +153,9 @@ define([...,'ojc-rte-quill/loader', ...], function(...) {
 	function MyViewModel() {
 	   var self = this;
 	   self.handleTextChange = function(event) {
-	      console.log(event.detail.value.oldRange);
-              console.log(event.detail.value.range);
-              console.log(event.detail.value.source);
+		console.log(event.detail.value.oldRange);
+		console.log(event.detail.value.range);
+		console.log(event.detail.value.source);
 	   }
 	}
 	return new MyViewModel();
@@ -162,19 +163,37 @@ define([...,'ojc-rte-quill/loader', ...], function(...) {
 ```
 
 ### ojc-editor-change
-To be added
+Emitted when either text-change or selection-change would be emitted, even when the source is "silent". The first parameter is the event name, either text-change or selection-change, followed by the arguments normally passed to those respective handlers.
+```html
+<ojc-rte-quill  id="editor" on-ojc-editor-change="[[handleEditorChange]]">
+</ojc-rte-quill>
+```
+```javascript
+define([...,'ojc-rte-quill/loader', ...], function(...) {
+	function MyViewModel() {
+	   var self = this;
+	   self.handleEditorChange = function(event) {
+	      console.log(event.detail.value.eventName);
+          console.log("[on-ojc-editor-change]" + event.detail.value.args[0]);
+          console.log("[on-ojc-editor-change]" + event.detail.value.args[1]);
+          console.log("[on-ojc-editor-change]" + event.detail.value.args[2]);
+	   }
+	}
+	return new MyViewModel();
+})
+```
 
 ## Slots
-Not implemented yet (support of custom toolbar, fonts)
+Not implemented yet (support of custom toolbar, fonts planned)
 
 ## Tests
 Not implemented yet
 
-## Limitations
+## Limitations known in current release: 0.1.0
  - Only **snow** theme is supported at this moment
- - Only the default Fonts are supported at this moment
- - Formula still does not work. KaTex loads properly, but do not add the Formulas to the editor.
+ - Only the **default Fonts** are supported at this moment
+ - **Formula still does NOT work**. KaTex loads properly, but do not add the Formulas to the editor.
  - Not all QuillJS API has been exposed within the component yet.
- - Unit Test are not implemented
- - maxLength validation is not using the Validators framework of Oracle JET
-
+ - Unit Test are still not implemented
+ - **maxLength** validation is not using the Validators framework of Oracle JET. Potentially it will be re-written in next versions
+ - Dependencies contained in libs folder instead of NPM dependencies

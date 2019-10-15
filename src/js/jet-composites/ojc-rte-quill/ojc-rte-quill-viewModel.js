@@ -5,7 +5,7 @@
 'use strict';
 define(
   ['ojs/ojlogger', 'ojs/ojmessaging', 'ojs/ojtranslation', 'knockout', 'ojL10n!./resources/nls/ojc-rte-quill-strings', './libs/katex/katex.min', './libs/highlight/highlight.pack',
-    './libs/quill/quill.min', 'css!./libs/katex/katex.min', 'css!./libs/quill/quill.snow', 'css!./libs/highlight/styles/monokai-sublime',  'ojs/ojmessages'
+    './libs/quill/quill.min', 'css!./libs/katex/katex.min', 'css!./libs/quill/quill.snow', 'css!./libs/highlight/styles/monokai-sublime', 'ojs/ojmessages'
   ],
 
   function (Logger, Message, Translations, ko, componentStrings, katex, hljs, Quill) {
@@ -44,24 +44,15 @@ define(
       self.quillOptions.scrollingContainer = self.properties.scrollingContainer;
       self.quillOptions.theme = self.properties.theme;
       self.quillOptions.modules.toolbar = '#' + self.toolbarContainerId;
-      const loggerInitQuillOptionsMessage = Translations.applyParameters(self.res['loggerInitQuillOptions'], self.quillOptions);
+      const loggerInitQuillOptionsMessage = Translations.applyParameters(self.res['initQuillOptions'], {'options' : self.quillOptions});
       Logger.info(self.loggingIdentity + loggerInitQuillOptionsMessage);
 
+      // Initialize the Toolbar based on the options provided
       self._initQuillJSToolbar();
 
     };
 
-
     // Support Enums for QuillJS
-
-    /**
-     * Enum for the Error Messgae Keys that can be used within the component
-     * @readonly
-     * @enum {string}
-     */
-    RichTextEditorQuillComponentModel.prototype._errorMessageKeysEnum = {
-      QUILL_NOT_INITIALIZED: "quillNotInitialized"
-    }
 
     /**
      * Enum for the Formats allowed / disallowed in the Quill JS Editor.
@@ -144,25 +135,21 @@ define(
         }
 
       } else {
-        self._reportError(self._errorMessageKeysEnum.QUILL_NOT_INITIALIZED, { 'editorContainerId': self.editorContainerId });
+        self._reportError('quillNotInitialized', { 'id': self.editorContainerId });
       }
     };
 
-    RichTextEditorQuillComponentModel.prototype.activated = function (context) {
-      console.log("[rte] activated");
-    };
+    // RichTextEditorQuillComponentModel.prototype.activated = function (context) {
+    // };
 
-    RichTextEditorQuillComponentModel.prototype.connected = function (context) {
-      console.log("[rte] connected");
-    };
+    // RichTextEditorQuillComponentModel.prototype.connected = function (context) {
+    // };
 
-    RichTextEditorQuillComponentModel.prototype.disconnect = function (context) {
-      console.log("[rte] disconnect");
-    };
+    // RichTextEditorQuillComponentModel.prototype.disconnect = function (context) {
+    // };
 
-    RichTextEditorQuillComponentModel.prototype.propertyChanged = function (context) {
-      console.log("[rte] propertyChanged");
-    };;
+    // RichTextEditorQuillComponentModel.prototype.propertyChanged = function (context) {
+    // };;
 
     // QUILLJS - Content API
 
@@ -366,7 +353,12 @@ define(
         if (self._quillGetLength() > self.maxLength) {
           self._quillDeleteText(self.maxLength, self._quillGetLength());
           self.messageQueue.shift();
-          self.messageQueue.push({ summary: "Maximun Reached", detail: "Maximum length is: " + self.maxLength, severity: Message.SEVERITY_TYPE.ERROR });
+          self.messageQueue.push({
+            summary: self.res['quillMaximumLengthSummary'],
+            detail:  Translations.applyParameters(self.res['quillMaximumLengthDetail'], {'maxLength': self.maxLength}),
+            severity: Message.SEVERITY_TYPE.ERROR,
+            closeAffordance: "none"
+          });
         }
 
         if (self.ojcTextChange) {
@@ -380,7 +372,7 @@ define(
      */
     RichTextEditorQuillComponentModel.prototype._quillOnSelectionChangeEvent = function () {
       var self = this
-      self.quill.on('selection-change', function(range, oldRange, source) {
+      self.quill.on('selection-change', function (range, oldRange, source) {
         const params = {
           'bubbles': true,
           'detail': {
@@ -609,7 +601,7 @@ define(
             break;
           }
           default:
-            const loggerToolbarOptionNotValidMessage = Translations.applyParameters(self.res['loggerToolbarOptionNotValid'], toolbarOption);
+            const loggerToolbarOptionNotValidMessage = Translations.applyParameters(self.res['toolbarOptionNotValid'], {'option': toolbarOption});
             Logger.warn(self.loggingIdentity + loggerToolbarOptionNotValidMessage);
             break;
         }

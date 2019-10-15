@@ -1,6 +1,6 @@
 {
   "name": "ojc-rte-quill",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "jetVersion": "^7.2.0",
   "displayName": "Quill JS - Rich Text Editor",
   "description": "Oracle JET Custom Web Component implementing a Rich Text Editor based on QuillJS ",
