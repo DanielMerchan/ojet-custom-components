@@ -42,7 +42,7 @@ Use it in your Module HTML as follows:
 ```
 ## Properties
 |Option|Type|Required|Description|Default Value
-|--|--|--|--|--|--|
+|--|--|--|--|--|
 |printElement|string|``false``|Identifier of the HTML Container parent used for Printing|``document``|
 |forcePrint|string|``false``|Invokes automatically window.print() in the printable page|``true``|
 
