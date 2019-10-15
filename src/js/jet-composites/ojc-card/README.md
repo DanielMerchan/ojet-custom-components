@@ -50,7 +50,7 @@ Use it in your Module HTML as follows:
 ## Properties
 
 |Option|Type|Required|Description|Default Value
-|--|--|--|--|--|x
+|--|--|--|--|--|
 |name|string|``false``|Name displayed in the card|``empty``|
 |avatar|string|``false``|URL of the image used in the card|``empty``|
 |work-title|string|``false``|Work title displayed in the card|``empty``|
