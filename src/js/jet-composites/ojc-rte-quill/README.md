@@ -193,6 +193,9 @@ define([...,'ojc-rte-quill/loader', ...], function(...) {
 ## Slots
 Not implemented yet (support of custom toolbar, fonts planned)
 
+## Styles
+To be defined
+
 ## Tests
 Not implemented yet
 

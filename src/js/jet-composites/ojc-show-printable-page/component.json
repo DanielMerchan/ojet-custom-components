@@ -1,6 +1,6 @@
 {
   "name": "ojc-show-printable-page",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "jetVersion": ">=7.2.0 <8.0.0",
   "displayName": "Show or Print Printable Page.",
   "description": "It displays the Printable Page based on the DIV identifier sent.",
@@ -17,7 +17,8 @@
       "description": "If true, triggers the print automatically. By default is false",
       "required": false,
       "type": "boolean",
-      "propertyGroup": "common"
+      "propertyGroup": "common",
+      "value": true
     }
   },
   "methods": {
